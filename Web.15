@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+    <style>
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination .page {
+            margin: 0 10px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .pagination .page.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination .page.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div id="pagination" class="pagination">
+    </div>
+    <script src="pagination.js"></script>
+    <script src="test.js"></script>
+</body>
+</html>
+
+
+
+JavaScript Code:
+class Pagination {
+    constructor(element, itemsPerPage) {
+        this.element = element;
+        this.itemsPerPage = itemsPerPage;
+        this.currentPage = 1;
+        this.pages = [];
+        this.build();
+    }
+
+    build() {
+        this.pages = Math.ceil(document.querySelectorAll('.item').length / this.itemsPerPage);
+
+        for (let i = 1; i <= this.pages; i++) {
+            const page = document.createElement('div');
+            page.classList.add('page');
+            page.textContent = i;
+
+            if (i === this.currentPage) {
+                page.classList.add('active');
+            }
+
+            page.addEventListener('click', () => {
+                this.navigateTo(i);
+            });
+
+            this.element.appendChild(page);
+
+
+
+
+
+
